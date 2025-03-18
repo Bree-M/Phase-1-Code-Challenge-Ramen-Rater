@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffe6e6;
+    background-color: #5f4d2c;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -32,10 +32,10 @@ h1 {
 }
 
 #ramen-detail {
-    background-color: white;
+    background-color: #F5E1DA;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(168, 47, 47, 0.2);
     max-width: 400px;
     margin: 20px auto;
 }
@@ -47,7 +47,7 @@ h1 {
 }
 
 form {
-    background-color: #ffcccc;
+    background-color: #141011;
     padding: 15px;
     margin-top: 20px;
     border-radius: 10px;
@@ -64,14 +64,14 @@ input, button {
 }
 
 button {
-    background-color: #ff4d4d;
+    background-color: #f81010;
     color: white;
     font-size: 1rem;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #cc0000;
+    background-color: #052e08;
 }
 
 
