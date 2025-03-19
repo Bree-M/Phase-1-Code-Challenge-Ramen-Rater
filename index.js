@@ -14,11 +14,13 @@ function displayRamens() {
 }
 
 function handleClick(ramen) {
-    getElementById("ramen-image").src =`https;//i.pinimg.com/474x/26/f1/19/26f119326fc93d7b4a387c3b4dedb75a.jpg;`
-    getElementById("ramen-name").textContent = ramen.name;
-    getElementById("ramen-restaurant").textContent = "Restaurant: " + ramen.restaurant;
-    getElementById("ramen-rating").textContent = "Rating: " + ramen.rating;
-    getElementById("ramen-comment").textContent = "Comment: " + ramen.comment;
+    document.getElementById("new-ramen-form").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+    
+        window.location.href = "thankyou.html";
+    });
+    
+    
 }
 
 function addSubmitListener() {
@@ -48,6 +50,18 @@ function main() {
 }
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("new-ramen-form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Optionally, you can add logic to store the submitted data here
+
+        // Redirect to another page
+        window.location.href = "thank-you.html"; // Change to the actual page you want
+    });
+});
 
 
 

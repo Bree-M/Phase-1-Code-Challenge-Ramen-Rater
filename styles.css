@@ -1,10 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #5f4d2c;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+    background-color: #fff1f3;
+    background-image: url("sakura-pattern.png"); 
+    background-size: cover;
+    color: #704214;
+    font-family: "Georgia", serif;
+    cursor: url('cherry-cursor.png'), auto;
+
 }
+
+
 
 h1 {
     color: #ff4d4d;
@@ -32,22 +36,25 @@ h1 {
 }
 
 #ramen-detail {
-    background-color: #F5E1DA;
+    background: rgba(255, 228, 232, 0.8);
+    backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 182, 193, 0.5);
+    border-radius: 12px;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(168, 47, 47, 0.2);
-    max-width: 400px;
-    margin: 20px auto;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.08);
 }
 
+    
+
+
 #ramen-image {
-    width: 100%;
-    height: auto;
+    width: 75%;
+    height: 50%;
     border-radius: 10px;
 }
 
 form {
-    background-color: #141011;
+    background-color: #f08aa4;
     padding: 15px;
     margin-top: 20px;
     border-radius: 10px;
@@ -55,24 +62,91 @@ form {
 }
 
 input, button {
-    display: block;
-    width: 80%;
-    margin: 10px auto;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+    background-color: #ffb7c5;
+    border: 2px solid #e07a93;
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
 button {
-    background-color: #f81010;
+    background: linear-gradient(to right, #fbc2eb, #f38bb8);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 16px;
     color: white;
-    font-size: 1rem;
-    cursor: pointer;
+    cursor: url('https://i.pinimg.com/236x/c2/d0/0f/c2d00f1a4f5b257a6c479ca6eb335ab0.jpg/cherry-cursor.png'), auto;
+    box-shadow: 0px 4px 8px rgba(255, 182, 193, 0.5);
+    transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #052e08;
+    background: linear-gradient(to right, #f38bb8, #fbc2eb);
+    box-shadow: 0px 6px 12px rgba(255, 182, 193, 0.7);
+    transform: scale(1.05);
 }
+
+nav {
+    background-color: #ffccd5; 
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #9b5a8c;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #e63946; 
+}
+
+
+.thank-you-container {
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+}
+
+.button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #ffb6c1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #ff99aa;
+}
+
+
+
+
+
 
 
 
