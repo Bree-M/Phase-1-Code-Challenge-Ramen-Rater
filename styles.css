@@ -1,18 +1,23 @@
 body {
-    background-color: #fff1f3;
-    background-image: url("sakura-pattern.png"); 
-    background-size: cover;
-    color: #704214;
-    font-family: "Georgia", serif;
-    cursor: url('cherry-cursor.png'), auto;
-
+    font-family:  Arial Narrow Bold, sans-serif;
+    background-color: #181104;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-
-
 h1 {
-    color: #ff4d4d;
-    font-size: 2.5rem;
+    background-color: #fa7a25;
+    color: rgb(15, 6, 12);
+    padding: 20px;
+    margin: 0;
+}
+
+#ramen-menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
 }
 
 #ramen-menu {
@@ -22,48 +27,76 @@ h1 {
     margin: 20px 0;
 }
 
-#ramen-menu img {
-    width: 120px;
-    height: 120px;
-    margin: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
 
 #ramen-menu img:hover {
     transform: scale(1.2);
 }
 
+#ramen-menu {
+ 
+ }
+
 #ramen-detail {
-    background: rgba(255, 228, 232, 0.8);
-    backdrop-filter: blur(40px);
-    border: 2px solid rgba(255, 182, 193, 0.5);
-    border-radius: 12px;
+    background: rgb(230, 120, 47);
     padding: 20px;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 20px auto;
 }
 
-    
-
-
-#ramen-image {
-    width: 75%;
-    height: 50%;
+#ramen-detail img {
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
 }
 
 form {
-    background-color: #f08aa4;
+    background-color: #f0a748;
     padding: 15px;
     margin-top: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(129, 45, 45, 0.1);
+}
+
+button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #160d0f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #f16c83;
+}
+
+button {
+    background: linear-gradient(to right, #fbc2eb, #b8500c);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: rgb(121, 4, 48);
+    cursor: url('https://i.pinimg.com/236x/c2/d0/0f/c2d00f1a4f5b257a6c479ca6eb335ab0.jpg/cherry-cursor.png'), auto;
+    box-shadow: 0px 4px 8px rgba(255, 182, 193, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+button:hover {
+    background: linear-gradient(to right, #f38bb8, #fbc2eb);
+    box-shadow: 0px 6px 12px rgba(255, 182, 193, 0.7);
+    transform: scale(1.05);
 }
 
 input, button {
-    background-color: #ffb7c5;
-    border: 2px solid #e07a93;
+    background-color: #f0aac5;
+    border: 2px solid #cc4363;
     border-radius: 50px;
     padding: 12px 24px;
     font-size: 16px;
@@ -75,26 +108,8 @@ input, button {
     transition: all 0.3s ease-in-out;
 }
 
-button {
-    background: linear-gradient(to right, #fbc2eb, #f38bb8);
-    border: none;
-    border-radius: 25px;
-    padding: 12px 24px;
-    font-size: 16px;
-    color: white;
-    cursor: url('https://i.pinimg.com/236x/c2/d0/0f/c2d00f1a4f5b257a6c479ca6eb335ab0.jpg/cherry-cursor.png'), auto;
-    box-shadow: 0px 4px 8px rgba(255, 182, 193, 0.5);
-    transition: all 0.3s ease-in-out;
-}
-
-button:hover {
-    background: linear-gradient(to right, #f38bb8, #fbc2eb);
-    box-shadow: 0px 6px 12px rgba(255, 182, 193, 0.7);
-    transform: scale(1.05);
-}
-
 nav {
-    background-color: #ffccd5; 
+    background-color: #1f0d1c; 
     padding: 10px 0;
     text-align: center;
 }
@@ -118,7 +133,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #e63946; 
+    color: #d83341; 
 }
 
 
@@ -127,22 +142,7 @@ nav ul li a:hover {
     margin-top: 50px;
     font-family: Arial, sans-serif;
 }
-
-.button {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #ffb6c1;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.button:hover {
-    background-color: #ff99aa;
-}
-
+   
 
 
 
