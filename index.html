@@ -5,112 +5,355 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramen Paradise</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #ramen-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        #ramen-menu img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        #ramen-menu img:hover {
+            border-color: #ff6b6b;
+        }
+        #ramen-detail {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #ramen-detail img {
+            max-width: 300px;
+            max-height: 200px;
+        }
+        form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px;
+        }
+        .category-btn {
+            padding: 8px 15px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .category-btn.active {
+            background-color: #ff6b6b;
+            color: white;
+        }
+    </style>
 </head>
-<body >
-
+<body>
     <h1>Welcome to Ramen Paradise 🍜🌸</h1>
     
+    <div id="menu-categories">
+        <h2>Menu Categories</h2>
+        <button class="category-btn active" data-category="all">All Ramen</button>
+        <button class="category-btn" data-category="spicy">Spicy Ramen</button>
+        <button class="category-btn" data-category="vegetarian">Vegetarian Ramen</button>
+        <button class="category-btn" data-category="premium">Premium Ramen</button>
+        <button class="category-btn" data-category="classic">Classic Ramen</button>
+    </div>
+    
     <div id="ramen-menu"></div>
-       
     
     <div id="ramen-detail">
-        <img id="ramen-image" src="https://i.pinimg.com/474x/6b/41/04/6b41047134d607e49a2c0d98c4a8c554.jpg" alt="https://moringa.instructure.com/courses/967/files/517800/preview">
-        <h2 id="ramen-name">Pork Ramen</h2>
-        <p id="ramen-restaurant">Ramen Paradise</p>
-        <p id="ramen-rating">She's a 10 but sells Ramen!</p>
-        <p id="ramen-comment">Definitely coming back for the pork ram</p>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button id="delete-btn">Delete</button>
-
+        <img id="ramen-image" src="" alt="Selected ramen image">
+        <h2 id="ramen-name"></h2>
+        <h3 id="ramen-restaurant"></h3>
+        <p>Rating: <span id="rating-display"></span>/5</p>
+        <p>Comment: <span id="comment-display"></span></p>
     </div>
 
-    <div id="ramen-detail">
-        <img id="ramen-image" src="https://moringa.instructure.com/courses/967/files/517799/preview" alt="">
-        <h2 id="ramen-name">Naruto Ramen</h2>
-        <p id="ramen-restaurant">Menya</p>
-        <p id="ramen-rating">She's a 10 but sells Ramen!</p>
-        <p id="ramen-comment">Very filing and very rich.</p>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button id="delete-btn">Delete</button>
+    <h2>Add New Ramen</h2>
+    <form id="new-ramen">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="restaurant" placeholder="Restaurant" required>
+        <input type="url" name="image" placeholder="Image URL" required>
+        <input type="number" name="rating" placeholder="Rating" min="1" max="5" required>
+        <input type="text" name="comment" placeholder="Comment" required>
+        <button type="submit">Add Ramen</button>
+    </form>
 
-    </div>
+    <h2>Add New Category</h2>
+    <form id="new-category-form">
+        <input type="text" id="new-category-name" placeholder="New category name" required>
+        <button type="submit">Add Category</button>
+    </form>
+    
+    <h2>Edit Current Ramen</h2>
+    <form id="edit-ramen">
+        <input type="number" name="rating" placeholder="New Rating" min="1" max="5">
+        <input type="text" name="comment" placeholder="New Comment">
+        <button type="submit">Update</button>
+        <button type="button" id="delete-ramen">Delete</button>
+    </form>
 
-    <div id="ramen-detail">
-        <img id="ramen-image" src="https://moringa.instructure.com/courses/967/files/517800/preview" alt="">
-        <h2 id="ramen-name">Miso Ramen</h2>
-        <p id="ramen-restaurant">chakafe</p>
-        <p id="ramen-rating">She's a 10 but sells Ramen!</p>
-        <p id="ramen-comment">Very creamy, love it.</p>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button id="delete-btn">Delete</button>
+    <script>
+       document.addEventListener("DOMContentLoaded", () => {
+    
+    const ramens = [
+        { 
+            id: 1, 
+            name: "Gyukotsu Ramen", 
+            restaurant: "Ichiran", 
+            image: "https://i.pinimg.com/236x/05/e3/a8/05e3a814fde659090df471ad58823c79.jpg",  
+            rating: 5,
+            comment: "Delicious beef bone broth!",
+            categories: ["premium"]
+        },
+        { 
+            id: 2, 
+            name: "Naruto Ramen", 
+            restaurant: "Menya", 
+            image: "https://i.pinimg.com/474x/fe/55/cf/fe55cf0c57e07443f0a208b11ea4a9a4.jpg",  
+            rating: 4, 
+            comment: "Classic fish cake topping!",
+            categories: ["classic"]
+        },
+        { 
+            id: 3, 
+            name: "Shoyu Ramen", 
+            restaurant: "Ramen-ya", 
+            image: "https://i.pinimg.com/474x/6f/e4/ef/6fe4ef2995feecb6ec232649d1c942d3.jpg",  
+            rating: 4, 
+            comment: "Soy sauce based goodness",
+            categories: ["classic"]
+        },
+        { 
+            id: 4, 
+            name: "Miso Ramen", 
+            restaurant: "Chakafe", 
+            image: "https://i.pinimg.com/474x/8c/02/4e/8c024e17dad1ca6fb322542a6cb0f630.jpg",  
+            rating: 5, 
+            comment: "Rich and flavorful miso broth",
+            categories: ["vegetarian"]
+        },
+        { 
+            id: 5, 
+            name: "Tantan Ramen", 
+            restaurant: "Kojiro", 
+            image: "https://i.pinimg.com/474x/a4/c1/5c/a4c15c5c55525a9ce15f4cf5bdbe1e46.jpg",  
+            rating: 4, 
+            comment: "Spicy sesame delight",
+            categories: ["spicy"]
+        }
+    ];
 
-    </div>
+   
+    const ramenMenu = document.getElementById("ramen-menu");
+    const ramenDetail = document.getElementById("ramen-detail");
+    const nameElement = document.getElementById("ramen-name");
+    const restaurantElement = document.getElementById("ramen-restaurant");
+    const imageElement = document.getElementById("ramen-image");
+    const ratingDisplay = document.getElementById("rating-display");
+    const commentDisplay = document.getElementById("comment-display");
+    const ramenForm = document.getElementById("new-ramen");
+    const editForm = document.getElementById("edit-ramen");
+    const editRating = document.querySelector("#edit-ramen input[name='rating']");
+    const editComment = document.querySelector("#edit-ramen input[name='comment']");
+    const menuCategories = document.getElementById("menu-categories");
+    const newCategoryForm = document.getElementById("new-category-form");
+    const deleteButton = document.getElementById("delete-ramen");
 
-    <div id="ramen-detail">
-        <img id="ramen-image" src="https://moringa.instructure.com/courses/967/files/517798/preview" alt="">
-        <h2 id="ramen-name"> Taty Ramen</h2>
-        <p id="ramen-restaurant">Inti</p>
-        <p id="ramen-rating">She's a 10 but sells Ramen!</p>
-        <p id="ramen-comment">Love it.</p>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button id="delete-btn">Delete</button>
+    
+    const defaultCategories = ["all", "premium", "classic", "vegetarian", "spicy"];
+    let currentCategories = [...defaultCategories];
 
-    </div>
-
-    <div id="ramen-detail">
-        <img id="ramen-image" src="https://moringa.instructure.com/courses/967/files/517801/preview" alt="">
-        <h2 id="ramen-name">Shoyu Ramen</h2>
-        <p id="ramen-restaurant">Misono</p>
-        <p id="ramen-rating">She's a 10 but sells Ramen!</p>
-        <p id="ramen-comment">Very filing and very umami.</p>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button id="delete-btn">Delete</button>
-
-    </div>
-
-    <div id="ramen-detail">
-        <img id="ramen-image" src="https://moringa.instructure.com/courses/967/files/517797/preview" alt="">
-        <h2 id="ramen-name">Udon Ramen</h2>
-        <p id="ramen-restaurant">Menya</p>
-        <p id="ramen-rating">She's a 10 but sells Ramen!</p>
-        <p id="ramen-comment">Very filing.</p>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button id="delete-btn">Delete</button>
-
-    </div>
-
-    <form id="new-ramen-form">
-        <input type="text" id="new-ramen-name" placeholder="Ramen Name" required>
-        <input type="text" id="new-ramen-restaurant" placeholder="Restaurant" required>
-        <input type="url" id="new-ramen-image" placeholder="Image" required>
-        <input type="numbers" id="new-ramen-rating" placeholder="Rating" required>
-        <input type="text" id="new-ramen-comment" placeholder="Comment" required>
-        <button type="submit">Submit Ramen</a></button>
-        <button id="delete-btn">Delete</button>
-         
-
-
-
-    <nav>
-
-        <h1>Ramen Menu 🍜</h1>
-    <div id="ramen-menu">  
-    <img id = "Ramen-image" src="https://i.pinimg.com/736x/1c/45/cc/1c45cc5101591dcb817a18ec5a005747.jpg">
+  
+    function displayRamens(ramenList = ramens) {
+        ramenMenu.innerHTML = "";
+        ramenList.forEach(ramen => {
+            const img = document.createElement("img");
+            img.src = ramen.image;
+            img.alt = ramen.name;
+            img.dataset.id = ramen.id;
+            img.onerror = function() {
+                this.src = "https://i.pinimg.com/736x/52/4a/c8/524ac81354594ba12eeb64a10e727fee.jpg";
+            };
+            img.addEventListener("click", () => displayRamenDetails(ramen));
+            ramenMenu.appendChild(img);
+        });
         
-    </div>
-    
-</nav>
-</form>
+        if (ramenList.length > 0) {
+            displayRamenDetails(ramenList[0]);
+        } else {
+            clearRamenDetails();
+        }
+    }
 
+   
+    function displayRamenDetails(ramen) {
+        nameElement.textContent = ramen.name;
+        restaurantElement.textContent = ramen.restaurant;
+        imageElement.src = ramen.image;
+        imageElement.alt = ramen.name;
+        ratingDisplay.textContent = ramen.rating || "Not rated";
+        commentDisplay.textContent = ramen.comment || "No comment";
+
+       
+        const existingCategories = document.querySelector("#ramen-detail .categories");
+        if (existingCategories) {
+            existingCategories.remove();
+        }
+
+       
+        if (ramen.categories && ramen.categories.length > 0) {
+            const categoriesDiv = document.createElement("div");
+            categoriesDiv.className = "categories";
+            categoriesDiv.innerHTML = `<strong>Categories:</strong> ${ramen.categories.join(", ")}`;
+            ramenDetail.appendChild(categoriesDiv);
+        }
+
+       
+        if (editRating) editRating.value = ramen.rating || "";
+        if (editComment) editComment.value = ramen.comment || "";
+        if (editForm) editForm.dataset.id = ramen.id;
+    }
+
+   
+    function clearRamenDetails() {
+        nameElement.textContent = "";
+        restaurantElement.textContent = "";
+        imageElement.src = "";
+        imageElement.alt = "";
+        ratingDisplay.textContent = "";
+        commentDisplay.textContent = "";
+        
+        const existingCategories = document.querySelector("#ramen-detail .categories");
+        if (existingCategories) {
+            existingCategories.remove();
+        }
+    }
+
+    
+    function filterByCategory(category) {
+        document.querySelectorAll(".category-btn").forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.category === category);
+        });
+
+        if (category === "all") {
+            displayRamens(ramens);
+        } else {
+            const filteredRamens = ramens.filter(ramen => 
+                ramen.categories && ramen.categories.includes(category)
+            );
+            displayRamens(filteredRamens);
+        }
+    }
+
+   
+    function initCategoryButtons() {
+        menuCategories.innerHTML = "";
+        
+        currentCategories.forEach(category => {
+            const button = document.createElement("button");
+            button.className = "category-btn";
+            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            button.dataset.category = category;
+            
+            button.addEventListener("click", () => {
+                filterByCategory(category);
+            });
+            
+            menuCategories.appendChild(button);
+        });
+        
+        
+        const allButton = document.querySelector(".category-btn[data-category='all']");
+        if (allButton) allButton.classList.add("active");
+    }
+
+    
+    function addNewCategory(categoryName) {
+        if (!currentCategories.includes(categoryName)) {
+            currentCategories.push(categoryName);
+            initCategoryButtons();
+            return true;
+        }
+        return false;
+    }
+
+   
+    newCategoryForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const categoryName = document.getElementById("new-category-name").value.trim().toLowerCase();
+        
+        if (categoryName && addNewCategory(categoryName)) {
+            newCategoryForm.reset();
+        } else {
+            alert("Category already exists or is invalid!");
+        }
+    });
+
+    ramenForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const newRamen = {
+            id: ramens.length + 1,
+            name: e.target.name.value,
+            restaurant: e.target.restaurant.value,
+            image: e.target.image.value,
+            rating: parseInt(e.target.rating.value) || 0,
+            comment: e.target.comment.value || "No comment yet",
+            categories: []
+        };
+        
+        ramens.push(newRamen);
+        displayRamens();
+        ramenForm.reset();
+    });
+
+    editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const id = parseInt(editForm.dataset.id);
+        const ramen = ramens.find(r => r.id === id);
+        
+        if (ramen) {
+            ramen.rating = parseInt(editRating.value) || 0;
+            ramen.comment = editComment.value || "No comment";
+            displayRamenDetails(ramen);
+            displayRamens();
+        }
+    });
+
+    deleteButton.addEventListener("click", () => {
+        const id = parseInt(editForm.dataset.id);
+        const index = ramens.findIndex(r => r.id === id);
+        
+        if (index !== -1) {
+            ramens.splice(index, 1);
+            displayRamens();
+        }
+    });
+
+   
+    initCategoryButtons();
+    displayRamens();
+});
+    </script>
 </body>
 </html>
-
 
 
